@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker  # tell the travis that we need a copy of docker to ready to go
+
+before-install:
+  - docker build -t kajal1501/docker-react -f Dockerfile.dev . #convention of image is what we used, you can use any image name
+
+script:
+  - docker run -e CI=true kajal1501/docker-react npm run test
