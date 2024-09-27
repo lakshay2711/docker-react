@@ -7,3 +7,15 @@ before-install:
 
 script:
   - docker run -e CI=true kajal1501/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "your-aws-region"
+  app: "name-of-aws-eb-app"
+  env: "env-name-of-eb"
+  bucket_name: "s3-bucket-name-generated-by-eb"
+  bucket_path: "bucket_path"   #it could be same as 'app'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY   #this variable will be replaced by travis ci variables key value
+  secret_access_key: "$AWS_SECRET_KEY"
