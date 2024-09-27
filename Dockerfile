@@ -14,4 +14,5 @@ RUN npm run build
 
 #setup the nginx image
 FROM nginx
+EXPOSE 80
 COPY --from=builder /home/node/app/build /usr/share/nginx/html
